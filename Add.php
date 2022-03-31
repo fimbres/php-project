@@ -1,3 +1,15 @@
+<?php
+    // Funcion de iniciar sesion aqui
+    $req = false;
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $req = "success";
+        $name = $_POST['f_name'];
+        $stock = $_POST['f_stock'];
+        $price = $_POST['f_price'];
+        //funcion ira aqui donde dira si fue exitoso, que problema existio, etc.
+        $req = "error";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -52,6 +64,19 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Add a product</h1>
+                        <?php if($req == "success") {?>
+                            <div class="alert alert-success" role="alert">
+                                The product has succesfully been added
+                            </div>
+                        <?php } else if($req == "error") {?>
+                            <div class="alert alert-warning" role="alert">
+                                The product couldn't be added, try again. 
+                                <?php echo $price;
+                                    echo $name;
+                                    echo $stock;
+                                ?>
+                            </div>
+                        <?php }?>
                         <div class="card mb-4 mt-4">
                             <div class="card-body">
                                 Here you can add a new product in the database, be careful to add all the information.
@@ -63,27 +88,34 @@
                                 Product atributes
                             </div>
                             <div class="card-body">
-                                <form>
+                            <form method="POST">
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                                                <label for="inputFirstName">Name</label>
+                                            <label>Name</label>
+                                            <div class="input-group mb-3 mb-md-0">
+                                                <input type="text" name="f_name" class="form-control p-3" placeholder="Enter the name of the product">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating">
-                                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                                                <label for="inputLastName">Stock</label>
+                                        <div class="col-md-6 form-group">
+                                            <label>Stock</label>
+                                            <div class="input-group mb-3 mb-md-0">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text p-3">$</span>
+                                                </div>
+                                                <input type="number" name="f_stock" class="form-control" placeholder="Enter the number of stock">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                                        <label for="inputPassword">Price</label>
+                                    <div class="form-group mb-3">
+                                        <label>Price</label>
+                                        <div class="input-group mb-3 mb-md-0">
+                                            <input type="number" name="f_price" class="form-control p-3" placeholder="Enter the price of the product">
+                                        </div>
                                     </div>
                                     <div class="mt-4 mb-0">
-                                        <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Add Product</a></div>
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary btn-block" type="submit">Add Product</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
