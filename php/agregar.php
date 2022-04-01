@@ -7,6 +7,9 @@
 
         if(!empty($data["f_name"])){
             $name = limpiar_string($data['f_name'],$BD);
+            if(empty($name)){
+                array_push($errors,"The name of the product is missing");
+            }
         } else{
             array_push($errors,"The name of the product is missing");
         }
