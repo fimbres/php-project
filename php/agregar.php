@@ -15,20 +15,20 @@
         }
 
         if(!empty($data["f_stock"])){
-            $stock = $data['f_stock'];
+            $stock = intval($data['f_stock']);
         } else{
             array_push($errors,"The number of stock is missing");
         }
         
         if(!empty($data["f_price"])){
-            $price = $data['f_price'];
+            $price = intval($data['f_price']);
         } else{
             array_push($errors,"The price of the product is missing");
         }
         $query = "";
         if(count($errors) == 0){
-            //$query = "INSERT INTO users(Name, LastName, Role, Email, Password) ";
-            //$query .= "VALUES('$name', '$stock','$price')";
+            $query = "INSERT INTO tb_productos(nombre_producto, stock, precio) ";
+            $query .= "VALUES('$name', '$stock','$price')";
         }
         if(count($errors) == 0 && !empty($query)){
             $add_user = mysqli_query($BD,$query);
