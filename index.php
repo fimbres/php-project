@@ -81,39 +81,29 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>Hot Cheetos TEST</td>
-                                            <td>23</td>
-                                            <td>13.50</td>
-                                            <td>
-                                                <div class="d-flex justify-content-center">
-                                                    <button class="btn btn-warning w-40 m-1 ">Edit</button>
-                                                    <button class="btn btn-danger w-40 m-1 ">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>BBQ Sauce</td>
-                                            <td>17</td>
-                                            <td>53.50</td>
-                                            <td>
-                                                <div class="d-flex justify-content-center">
-                                                    <button class="btn btn-warning w-40 m-1 ">Edit</button>
-                                                    <button class="btn btn-danger w-40 m-1 ">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donuts</td>
-                                            <td>5</td>
-                                            <td>130.00</td>
-                                            <td>
-                                                <div class="d-flex justify-content-center">
-                                                    <button class="btn btn-warning w-40 m-1 ">Edit</button>
-                                                    <button class="btn btn-danger w-40 m-1 ">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        <?php
+                                            require 'php/conexion.php';
+
+                                            $query = "SELECT nombre_producto,stock,precio FROM tb_productos";
+                                            $res = mysqli_query($conexion,$query);
+                                     
+                                            while($fila = mysqli_fetch_array($res))
+                                            {
+                                        ?>
+                                                <tr>
+                                                    <td><?php echo $fila['nombre_producto'];?></td>
+                                                    <td><?php echo $fila['stock'];?></td>
+                                                    <td><?php echo $fila['precio'];?></td>
+                                                    <td>
+                                                        <div class="d-flex justify-content-center">
+                                                            <button class="btn btn-warning w-40 m-1 ">Edit</button>
+                                                            <button class="btn btn-danger w-40 m-1 ">Delete</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                        <?php
+                                            }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
