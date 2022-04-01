@@ -1,3 +1,26 @@
+<?php
+    // Funcion de verificar el inicio de sesion aqui.
+    include("php/agregar.php");
+    
+    $alert = "";
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $alert = "error_b";
+         //Incluimos la conexion a la base de datos
+        include("php/conexion.php");
+
+        $res = add_user($_POST,$conexion);
+        if($res[1]){
+            $alert ="success";
+        } else{
+            if(count($res[0]) == 0){
+                $alert = "error_a";
+            }
+        }
+
+        //funcion ira aqui donde dira si fue exitoso, que problema existio, etc.
+        
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,7 +36,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between align-items-center">
-            <a class="navbar-brand ps-3" href="index.html">PHP Admin</a>
+            <a class="navbar-brand ps-3" href="index.php">PHP Admin</a>
             <div class="d-flex">
                 <button class="btn btn-link btn-sm order-1 m-1" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
                 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
@@ -32,11 +55,11 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Actions</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 See all the products
                             </a>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="Add.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-add"></i></div>
                                 Add a product
                             </a>
@@ -52,6 +75,25 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Add a product</h1>
+                        <!--Aqui inician las posibles alertas que se daran -->
+                        <?php if($alert == "success") {?>
+                            <div class="alert alert-success" role="alert">
+                                The product has succesfully been added
+                            </div>
+                        <?php } else if($alert == "error_b") {?>
+                            <div class="alert alert-primary" role="alert">
+                                
+                                <?php foreach($res[0] as $error){
+                                    echo $error . "</br>";
+                                }
+                                ?>
+                            </div>
+                        <?php } else if($alert == "error_a") {?>
+                            <div class="alert alert-warning" role="alert">
+                                There was a problem with the conecction, try again.
+                            </div>
+                        <?php }?>
+                        <!--Se acba el codigo de las alertas -->
                         <div class="card mb-4 mt-4">
                             <div class="card-body">
                                 Here you can add a new product in the database, be careful to add all the information.
@@ -63,27 +105,34 @@
                                 Product atributes
                             </div>
                             <div class="card-body">
-                                <form>
+                            <form method="POST">
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                                                <label for="inputFirstName">Name</label>
+                                            <label>Name</label>
+                                            <div class="input-group mb-3 mb-md-0">
+                                                <input type="text" name="f_name" class="form-control p-3" placeholder="Enter the name of the product">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating">
-                                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                                                <label for="inputLastName">Stock</label>
+                                        <div class="col-md-6 form-group">
+                                            <label>Stock</label>
+                                            <div class="input-group mb-3 mb-md-0">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text p-3">$</span>
+                                                </div>
+                                                <input type="number" name="f_stock" class="form-control" placeholder="Enter the number of stock">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                                        <label for="inputPassword">Price</label>
+                                    <div class="form-group mb-3">
+                                        <label>Price</label>
+                                        <div class="input-group mb-3 mb-md-0">
+                                            <input type="text" name="f_price" class="form-control p-3" placeholder="Enter the price of the product">
+                                        </div>
                                     </div>
                                     <div class="mt-4 mb-0">
-                                        <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Add Product</a></div>
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary btn-block" type="submit">Add Product</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
