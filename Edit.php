@@ -12,6 +12,9 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
+        <?php 
+            $idp = $_GET['producto'];
+        ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between align-items-center">
             <a class="navbar-brand ps-3" href="index.html">PHP Admin</a>
             <div class="d-flex">

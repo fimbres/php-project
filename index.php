@@ -84,7 +84,7 @@
                                         <?php
                                             require 'php/conexion.php';
 
-                                            $query = "SELECT nombre_producto,stock,precio FROM tb_productos";
+                                            $query = "SELECT * FROM tb_productos";
                                             $res = mysqli_query($conexion,$query);
                                      
                                             while($fila = mysqli_fetch_array($res))
@@ -94,9 +94,10 @@
                                                     <td><?php echo $fila['nombre_producto'];?></td>
                                                     <td><?php echo $fila['stock'];?></td>
                                                     <td><?php echo $fila['precio'];?></td>
+                                                    <?php $id = $fila['idp'];?>
                                                     <td>
                                                         <div class="d-flex justify-content-center">
-                                                            <button class="btn btn-warning w-40 m-1 ">Edit</button>
+                                                        <a href="Edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
                                                             <button class="btn btn-danger w-40 m-1 ">Delete</button>
                                                         </div>
                                                     </td>
