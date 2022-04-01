@@ -1,13 +1,24 @@
 <?php
-    // Funcion de iniciar sesion aqui
-    $req = false;
+    // Funcion de verificar el inicio de sesion aqui.
+    include("php/agregar.php");
+    
+    $alert = "";
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $req = "success";
-        $name = $_POST['f_name'];
-        $stock = $_POST['f_stock'];
-        $price = $_POST['f_price'];
+        $alert = "error_b";
+         //Incluimos la conexion a la base de datos
+        include("php/conexion.php");
+
+        $res = add_user($_POST,$conexion);
+        if($res[1]){
+            $alert ="success";
+        } else{
+            if(count($res[0]) == 0){
+                $alert = "error_a";
+            }
+        }
+
         //funcion ira aqui donde dira si fue exitoso, que problema existio, etc.
-        $req = "error";
+        
     }
 ?>
 <!DOCTYPE html>
@@ -25,7 +36,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between align-items-center">
-            <a class="navbar-brand ps-3" href="index.html">PHP Admin</a>
+            <a class="navbar-brand ps-3" href="index.php">PHP Admin</a>
             <div class="d-flex">
                 <button class="btn btn-link btn-sm order-1 m-1" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
                 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
@@ -44,11 +55,11 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Actions</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 See all the products
                             </a>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="Add.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-add"></i></div>
                                 Add a product
                             </a>
@@ -64,19 +75,25 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Add a product</h1>
-                        <?php if($req == "success") {?>
+                        <!--Aqui inician las posibles alertas que se daran -->
+                        <?php if($alert == "success") {?>
                             <div class="alert alert-success" role="alert">
                                 The product has succesfully been added
                             </div>
-                        <?php } else if($req == "error") {?>
-                            <div class="alert alert-warning" role="alert">
-                                The product couldn't be added, try again. 
-                                <?php echo $price;
-                                    echo $name;
-                                    echo $stock;
+                        <?php } else if($alert == "error_b") {?>
+                            <div class="alert alert-primary" role="alert">
+                                
+                                <?php foreach($res[0] as $error){
+                                    echo $error . "</br>";
+                                }
                                 ?>
                             </div>
+                        <?php } else if($alert == "error_a") {?>
+                            <div class="alert alert-warning" role="alert">
+                                There was a problem with the conecction, try again.
+                            </div>
                         <?php }?>
+                        <!--Se acba el codigo de las alertas -->
                         <div class="card mb-4 mt-4">
                             <div class="card-body">
                                 Here you can add a new product in the database, be careful to add all the information.
