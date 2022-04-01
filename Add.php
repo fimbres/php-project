@@ -126,7 +126,7 @@
                                     <div class="form-group mb-3">
                                         <label>Price</label>
                                         <div class="input-group mb-3 mb-md-0">
-                                            <input type="number" name="f_price" class="form-control p-3" placeholder="Enter the price of the product">
+                                            <input type="text" name="f_price" class="form-control p-3" placeholder="Enter the price of the product">
                                         </div>
                                     </div>
                                     <div class="mt-4 mb-0">

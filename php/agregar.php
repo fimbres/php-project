@@ -21,11 +21,16 @@
         }
         
         if(!empty($data["f_price"])){
-            $price = intval($data['f_price']);
+            $price = floatval($data['f_price']);
+            if((strlen($data['f_price']) >= 1 ) && $price == 0){
+                array_push($errors,"There was an error with the price");
+            }
         } else{
             array_push($errors,"The price of the product is missing");
         }
         $query = "";
+        $query = "$price";
+        array_push($errors, $query);
         if(count($errors) == 0){
             $query = "INSERT INTO tb_productos(nombre_producto, stock, precio) ";
             $query .= "VALUES('$name', '$stock','$price')";
