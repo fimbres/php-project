@@ -3,19 +3,17 @@
 include("php/conexion.php");
 $message="";
 
-//$email=(isset($_POST['email']))?$_POST['email']:;
-//$user=(isset($_POST['user']))?$_POST['user']:;
-$accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
-
-if(!empty($_POST['email']) && !empty($_POST['user']) && !empty($_POST['password']))
+if(!empty($_POST['tnombre']) && !empty($_POST['tusuario']) && !empty($_POST['tpassword']))
     {
-   // $sql="INSERT INTO tb_usuarios(nombre,usuario,password) VALUES (:email,:user,:password)";//estoy insertando los valores en la tabla
-    $stmt=$conexion->prepare("INSERT INTO tb_usuarios(nombre,usuario,password) VALUES (:email,:user,:password);");
-    $stmt->bindParam(':email',$email);
-    $stmt->bindParam(':user',$user);
-    $password=password_hash($_POST['password'],PASSWORD_BCRYPT);//Es Para encriptar la constraseña y se asigna a una variable, aun no se si se mantendrá en el código
-    $stmt->bindParam(':password',$password);//Estoy enviando la contrasena ya cifrada
+    $sql="INSERT INTO tb_usuarios(nombre,usuario,password) VALUES (tnombre,tusuario,tpassword)";// insertando los valores en la tabla
+   // $stmt=$conexion->prepare("INSERT INTO tb_usuarios(nombre,usuario,password) VALUES ('tnombre','tusuario','tpassword');");
+   $stmt=$conexion->prepare($sql);
+   $stmt->bindParam('tnombre',$_POST['tnombre']);
+    $stmt->bindParam('tusuario',$_POST['tusuario']);
+    
+    $stmt->bindParam('tpassword',$_POST['tpassword']);
+
 
             if($stmt->execute()){
                 $message="Se ha creado un nuevo usuario satisfactoriamente";
@@ -23,9 +21,7 @@ if(!empty($_POST['email']) && !empty($_POST['user']) && !empty($_POST['password'
             else{
                 $message="'No se ha podido crear la cuenta  ";
             }
-
     }
-
 
 ?>
 
@@ -58,39 +54,36 @@ if(!empty($_POST['email']) && !empty($_POST['user']) && !empty($_POST['password'
                                         </p> 
                                         <?php endif;?>
 
-                                        <form method="POST" enctype="multipart/form-data"><!-- metodo POST -->
+                                        <form action="register.php" method="POST" ><!-- metodo POST     enctype="multipart/form-data"-->
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" name="email" type="text" placeholder="ingresa tu email" />
-                                                        <label for="email">Email</label>
+                                                        <input class="form-control" name="tnombre" id="tnombre" type="text" placeholder="ingresa tu nombre" />
+                                                        <label for="tnombre">nombre</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input type="text" class="form-control"  name="user" id="user"  placeholder="Ingrese un usuario" />
-                                                        <label for="user">Usuario</label>
+                                                        <input type="text" class="form-control"  name="tusuario" id="tusuario"  placeholder="Ingrese un usuario" />
+                                                        <label for="tusuario">Usuario</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="password" name="password"  type="password" placeholder="Ingrese password" />
-                                                <label for="password">Password</label>
+                                                <input class="form-control" id="tpassword" name="tpassword"  type="password" placeholder="Ingrese password" />
+                                                <label for="tpassword">Password</label>
                                             </div>
-                                            <!---->
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="cpassword" name="cpassword" type="password" placeholder="Confirma tu password" />
-                                                <label for="cpassword">Confirma tu Password</label>
-                                            </div>
+                                            <!--
 
                                             <div class="btn" role="group" aria-label="">
                                                 <button type="submit" name="accion" value="submit" class="btn btn-success">Registrar</button>
 
-                                            </div>
-                                            <!--
-                                            <div class="mt-4 mb-0">
-                                                <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Create Account</a></div>
                                             </div>-->
+                                            
+                                            <div class="mt-4 mb-0">
+                                            <!--<div class="d-grid"><a class="btn btn-primary btn-block" type="submit" value="Submit" href="login.html">Create Account</a></div>-->
+                                                <div class="d-grid"><a class="btn btn-primary " type="submit" value="Submit" href="register.php">Create Account</a></div>
+                                            </div>
                                         </form>
                                     </div>
                                     <div class="small"><a href="login.html">¿tienes cuenta? inicia sesión</a></div>
