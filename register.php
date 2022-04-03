@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -44,7 +46,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="small"><a href="login.html">tienes cuienta¿, ----inicia sesion</a></div>
+                                    <div class="small"><a href="login.html">¿tienes cuenta? inicia sesión</a></div>
                                     <div class="card-footer text-center py-3">
                                     </div>
                                 </div>
