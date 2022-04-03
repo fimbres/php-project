@@ -97,8 +97,8 @@
                                                     <?php $id = $fila['idp'];?>
                                                     <td>
                                                         <div class="d-flex justify-content-center">
-                                                        <a href="Edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
-                                                            <button class="btn btn-danger w-40 m-1 ">Delete</button>
+                                                          <a href="Edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
+                                                          <a onclick="checkerDelete()" href="php/delete.php?idp=<?php echo $id;?>"><button class="btn btn-danger w-40 m-1 ">Delete</button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -129,5 +129,13 @@
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+	<script>
+		function checkerDelete(){
+			var result = confirm('Esta seguro que quiere borrar el registro?');
+			if (result == false){
+				event.preventDefault();
+			}
+		}
+	</script>
     </body>
 </html>
