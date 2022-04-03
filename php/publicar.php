@@ -8,6 +8,6 @@
 
     if(!$query)
     {
-        echo 'ERROR AL INSERTAR DATOS';
+        echo 'Data insertion error!';
     }
 ?>

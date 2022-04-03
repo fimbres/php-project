@@ -44,8 +44,8 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="small"><a href="login.html">tienes cuienta¿, ----inicia sesion</a></div>
                                     <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="login.php">Already have an account? Sign in</a></div>
                                     </div>
                                 </div>
                             </div>
