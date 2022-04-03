@@ -7,7 +7,7 @@
     if(empty($usuario) || empty($contraseña))
     {
         echo
-        "<div class='alert alert-warning' role='alert'>Both fields are required.</div>";
+        "<div class='alert alert-warning' role='alert'>Asegurate de llenar los campos</div>";
         include("login.php");
     }else{
         require 'php/conexion.php';
@@ -21,10 +21,12 @@
             header("location:index.php");
         }else{
             echo
-            "<div class='alert alert-danger' role='alert'>Authentication error!</div>";
+            "<div class='alert alert-danger' role='alert'>Error de autenticacion</div>";
             include("login.php");  
+        
         }
         mysqli_free_result($res);
         mysqli_close($conexion);
     }
+
 ?>
