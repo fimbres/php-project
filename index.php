@@ -36,7 +36,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 See all the products
                             </a>
-                            <a class="nav-link" href="Add.php">
+                            <a class="nav-link" href="add.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-add"></i></div>
                                 Add a product
                             </a>
@@ -97,7 +97,7 @@
                                                     <?php $id = $fila['idp'];?>
                                                     <td>
                                                         <div class="d-flex justify-content-center">
-                                                          <a href="Edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
+                                                          <a href="edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
                                                           <a onclick="checkerDelete()" href="php/delete.php?idp=<?php echo $id;?>"><button class="btn btn-danger w-40 m-1 ">Delete</button>
                                                         </div>
                                                     </td>
