@@ -1,6 +1,31 @@
 <?php
 
 include("php/conexion.php");
+$message="";
+
+//$email=(isset($_POST['email']))?$_POST['email']:;
+//$user=(isset($_POST['user']))?$_POST['user']:;
+$accion=(isset($_POST['accion']))?$_POST['accion']:"";
+
+
+if(!empty($_POST['email']) && !empty($_POST['user']) && !empty($_POST['password']))
+    {
+   // $sql="INSERT INTO tb_usuarios(nombre,usuario,password) VALUES (:email,:user,:password)";//estoy insertando los valores en la tabla
+    $stmt=$conexion->prepare("INSERT INTO tb_usuarios(nombre,usuario,password) VALUES (:email,:user,:password);");
+    $stmt->bindParam(':email',$email);
+    $stmt->bindParam(':user',$user);
+    $password=password_hash($_POST['password'],PASSWORD_BCRYPT);//Es Para encriptar la constraseña y se asigna a una variable, aun no se si se mantendrá en el código
+    $stmt->bindParam(':password',$password);//Estoy enviando la contrasena ya cifrada
+
+            if($stmt->execute()){
+                $message="Se ha creado un nuevo usuario satisfactoriamente";
+            }
+            else{
+                $message="'No se ha podido crear la cuenta";
+            }
+
+    }
+
 
 ?>
 
@@ -26,12 +51,19 @@ include("php/conexion.php");
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header bg-white"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                                     <div class="card-body">
+
+                                       <?php if (!empty($message)):?>//si no esta vacio el mensaje es porque ocurrió algo
+                                        <p>
+                                            <?= $message?>
+                                        </p> 
+                                        <?php endif;?>
+
                                         <form method="POST" enctype="multipart/form-data"><!-- metodo POST -->
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" name="name" type="text" placeholder="ingresa tu email" />
-                                                        <label for="name">Email</label>
+                                                        <input class="form-control" name="email" type="text" placeholder="ingresa tu email" />
+                                                        <label for="email">Email</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -52,7 +84,7 @@ include("php/conexion.php");
                                             </div>
 
                                             <div class="btn" role="group" aria-label="">
-                                                <button type="submit" name="accion" value="Agregar" class="btn btn-success">Registrar</button>
+                                                <button type="submit" name="accion" value="submit" class="btn btn-success">Registrar</button>
 
                                             </div>
                                             <!--
