@@ -21,7 +21,7 @@ if(!empty($_POST['email']) && !empty($_POST['user']) && !empty($_POST['password'
                 $message="Se ha creado un nuevo usuario satisfactoriamente";
             }
             else{
-                $message="'No se ha podido crear la cuenta";
+                $message="'No se ha podido crear la cuenta  ";
             }
 
     }
