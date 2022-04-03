@@ -29,8 +29,6 @@
             array_push($errors,"The price of the product is missing");
         }
         $query = "";
-        $query = "$price";
-        array_push($errors, $query);
         if(count($errors) == 0){
             $query = "INSERT INTO tb_productos(nombre_producto, stock, precio) ";
             $query .= "VALUES('$name', '$stock','$price')";
