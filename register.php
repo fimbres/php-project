@@ -1,4 +1,8 @@
+<?php
 
+include("php/conexion.php");
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,28 +26,39 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header bg-white"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form method="POST" enctype="multipart/form-data"><!-- metodo POST -->
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                                                        <label for="inputFirstName">First name</label>
+                                                        <input class="form-control" name="name" type="text" placeholder="ingresa tu email" />
+                                                        <label for="name">Email</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                                                        <label for="inputLastName">User Name</label>
+                                                        <input type="text" class="form-control"  name="user" id="user"  placeholder="Ingrese un usuario" />
+                                                        <label for="user">Usuario</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                                                <label for="inputPassword">Password</label>
+                                                <input class="form-control" id="password" name="password"  type="password" placeholder="Ingrese password" />
+                                                <label for="password">Password</label>
                                             </div>
+                                            <!---->
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="cpassword" name="cpassword" type="password" placeholder="Confirma tu password" />
+                                                <label for="cpassword">Confirma tu Password</label>
+                                            </div>
+
+                                            <div class="btn" role="group" aria-label="">
+                                                <button type="submit" name="accion" value="Agregar" class="btn btn-success">Registrar</button>
+
+                                            </div>
+                                            <!--
                                             <div class="mt-4 mb-0">
                                                 <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Create Account</a></div>
-                                            </div>
+                                            </div>-->
                                         </form>
                                     </div>
                                     <div class="small"><a href="login.html">¿tienes cuenta? inicia sesión</a></div>
