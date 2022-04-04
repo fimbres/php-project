@@ -1,14 +1,12 @@
 <?php
-    // Funcion de verificar el inicio de sesion aqui.
     include("php/agregar.php");
     
     $alert = "";
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $alert = "error_b";
-         //Incluimos la conexion a la base de datos
         include("php/conexion.php");
-
         $res = add_user($_POST,$conexion);
+
         if($res[1]){
             $alert ="success";
         } else{
@@ -16,9 +14,6 @@
                 $alert = "error_a";
             }
         }
-
-        //funcion ira aqui donde dira si fue exitoso, que problema existio, etc.
-        
     }
 ?>
 <!DOCTYPE html>
@@ -38,12 +33,12 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between align-items-center">
             <a class="navbar-brand ps-3" href="index.php">PHP Admin</a>
             <div class="d-flex">
-                <button class="btn btn-link btn-sm order-1 m-1" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+                <button class="btn btn-link btn-sm order-1 m-1" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
                 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
                     <li class="nav-item dropdown justify-content-end">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">Log out</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -75,14 +70,12 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Add a product</h1>
-                        <!--Aqui inician las posibles alertas que se daran -->
                         <?php if($alert == "success") {?>
                             <div class="alert alert-success" role="alert">
                                 The product has succesfully been added
                             </div>
                         <?php } else if($alert == "error_b") {?>
                             <div class="alert alert-primary" role="alert">
-                                
                                 <?php foreach($res[0] as $error){
                                     echo $error . "</br>";
                                 }
@@ -93,7 +86,6 @@
                                 There was a problem with the conecction, try again.
                             </div>
                         <?php }?>
-                        <!--Se acba el codigo de las alertas -->
                         <div class="card mb-4 mt-4">
                             <div class="card-body">
                                 Here you can add a new product in the database, be careful to add all the information.
@@ -116,16 +108,16 @@
                                         <div class="col-md-6 form-group">
                                             <label>Stock</label>
                                             <div class="input-group mb-3 mb-md-0">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text p-3">$</span>
-                                                </div>
-                                                <input type="number" name="f_stock" class="form-control" placeholder="Enter the number of stock">
+                                                <input type="number" name="f_stock" class="form-control p-3" placeholder="Enter the number of stock">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label>Price</label>
                                         <div class="input-group mb-3 mb-md-0">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text p-3">$</span>
+                                            </div>
                                             <input type="text" name="f_price" class="form-control p-3" placeholder="Enter the price of the product">
                                         </div>
                                     </div>

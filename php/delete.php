@@ -1,5 +1,5 @@
 <?php
-	header("Location: ../index.php"); /*the location should change*/
+	header("Location: ../index.php");
 	require 'conexion.php';
 	$variable_local = $_GET["idp"];
 	$query = "call sp_eliminar_productos('$variable_local')";
