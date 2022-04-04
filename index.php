@@ -13,7 +13,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between align-items-center">
-            <a class="navbar-brand ps-3" href="index.html">PHP Admin</a>
+            <a class="navbar-brand ps-3" href="index.php">PHP Admin</a>
             <div class="d-flex">
                 <button class="btn btn-link btn-sm order-1 m-1" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
                 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
@@ -31,14 +31,14 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Actions</div>
+                            <div class="sb-sidenav-menu-heading">Acciones</div>
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                See all the products
+                                Ver todos los productos
                             </a>
                             <a class="nav-link" href="Add.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-add"></i></div>
-                                Add a product
+                                Agregar producto
                             </a>
                         </div>
                     </div>
@@ -51,33 +51,33 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Products</h1>
+                        <h1 class="mt-4">Productos</h1>
                         <div class="card mb-4 mt-4">
                             <div class="card-body">
-                                Here you can see all the products available, if you choose a product in this table you can delete or modify it.
+                                Aqui puedes ver los productos disponibles, Si tu escoges un producto de esta tabla puedes borrarlo o modificarlo.
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                All the products
+                                Todos los productos
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Nombre</th>
                                             <th>Stock</th>
-                                            <th>Price</th>
-                                            <th>Actions</th>
+                                            <th>Precio</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Nombre</th>
                                             <th>Stock</th>
-                                            <th>Price</th>
-                                            <th>Actions</th>
+                                            <th>Precio</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -97,8 +97,8 @@
                                                     <?php $id = $fila['idp'];?>
                                                     <td>
                                                         <div class="d-flex justify-content-center">
-                                                        <a href="Edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
-                                                            <button class="btn btn-danger w-40 m-1 ">Delete</button>
+                                                        <a href="Edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Editar</button></a>
+                                                        <a href="php/eliminar.php?idp=<?php echo $id;?>"><button class="btn btn-danger w-40 m-1 ">Borrar</button></a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -116,9 +116,9 @@
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Admin. Software 2022</div>
                             <div>
-                                <a href="#">Privacy Policy</a>
+                                <a href="#">Politicas de privacidad</a>
                                 &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                                <a href="#">Terminos &amp; Condiciones</a>
                             </div>
                         </div>
                     </div>
