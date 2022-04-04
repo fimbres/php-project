@@ -6,6 +6,4 @@
         echo 'Error de conexion';
         exit;
     }
-
-    echo 'Te has conectado a la base de datos';
 ?>
