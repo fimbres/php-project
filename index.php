@@ -4,8 +4,8 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta name="description" content="Simple Web Application For Products Management." />
+        <meta name="author" content="472 UABC Group" />
         <title>PHP Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
@@ -13,14 +13,14 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between align-items-center">
-            <a class="navbar-brand ps-3" href="index.html">PHP Admin</a>
+            <a class="navbar-brand ps-3" href="index.php">PHP Admin</a>
             <div class="d-flex">
-                <button class="btn btn-link btn-sm order-1 m-1" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+                <button class="btn btn-link btn-sm order-1 m-1" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
                 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
                     <li class="nav-item dropdown justify-content-end">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">Logout</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -32,7 +32,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Actions</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 See all the products
                             </a>
@@ -83,25 +83,23 @@
                                     <tbody>
                                         <?php
                                             require 'php/conexion.php';
-
                                             $query = "SELECT * FROM tb_productos";
                                             $res = mysqli_query($conexion,$query);
-                                     
                                             while($fila = mysqli_fetch_array($res))
                                             {
                                         ?>
-                                                <tr>
-                                                    <td><?php echo $fila['nombre_producto'];?></td>
-                                                    <td><?php echo $fila['stock'];?></td>
-                                                    <td><?php echo $fila['precio'];?></td>
-                                                    <?php $id = $fila['idp'];?>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                          <a href="edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
-                                                          <a onclick="checkerDelete()" href="php/delete.php?idp=<?php echo $id;?>"><button class="btn btn-danger w-40 m-1 ">Delete</button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td><?php echo $fila['nombre_producto'];?></td>
+                                                <td><?php echo $fila['stock'];?></td>
+                                                <td><?php echo $fila['precio'];?></td>
+                                                <?php $id = $fila['idp'];?>
+                                                <td>
+                                                    <div class="d-flex justify-content-center">
+                                                        <a href="edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
+                                                        <a onclick="confirmDelete()" href="php/delete.php?idp=<?php echo $id;?>"><button class="btn btn-danger w-40 m-1 ">Delete</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         <?php
                                             }
                                         ?>
@@ -130,8 +128,8 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
 	<script>
-		function checkerDelete(){
-			var result = confirm('Esta seguro que quiere borrar el registro?');
+		function confirmDelete(){
+			var result = confirm('Are you sure to remove this product?');
 			if (result == false){
 				event.preventDefault();
 			}

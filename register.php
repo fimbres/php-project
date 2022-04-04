@@ -1,48 +1,34 @@
 <?php
+    require 'php/conexion.php';
 
-include("php/conexion.php");
-
-function limpiar_string($data, $BD){//esta funcion esta en el agregar.php
-    $data = trim($data);
-    $data = mysqli_real_escape_string($BD,$data);
-    return $data;
-}
-
-if(!empty($_POST['tnombre']) && !empty($_POST['tusuario']) && !empty($_POST['tpassword']) )//para revisar que los campos no estén vacios
-
-{
-    $message='';
-
-    $tnombre = limpiar_string($_POST['tnombre'],$conexion );//con limpiar-string evitamos inyecciones sql
-    //var_dump($tnombre);
-    $tusuario=limpiar_string($_POST['tusuario'],$conexion );
-    $tpassword=limpiar_string($_POST['tpassword'],$conexion );
-
-    $select = mysqli_query($conexion, "SELECT * FROM tb_usuarios WHERE usuario = '".$tusuario."'");
-
-    if(mysqli_num_rows($select)) {
-
-        echo "<script>alert('el usuario ya existe')</script>";// lanza una alerta por medio de un script
-    // exit('This username already exists');
-        }
-    else{
-        $query=mysqli_query($conexion,'CALL sp_insertar_usuarios("'.$tnombre.'","'.$tusuario.'","'.$tpassword.'")');
-
-        if(!$query)
-        {
-            echo "<script>alert('ocurrio un error, verifica los campos')</script>";
-        }
-        else
-        {
-        //var_dump($query);
-        echo "<script>alert('Usuario registrado')</script>";
-        
-        }
-    
+    function limpiar_string($data, $BD){
+        $data = trim($data);
+        $data = mysqli_real_escape_string($BD,$data);
+        return $data;
     }
 
-}
-
+    if(!empty($_POST['tnombre']) && !empty($_POST['tusuario']) && !empty($_POST['tpassword']))
+    {
+        $message='';
+        $tnombre = limpiar_string($_POST['tnombre'],$conexion);
+        $tusuario=limpiar_string($_POST['tusuario'],$conexion);
+        $tpassword=limpiar_string($_POST['tpassword'],$conexion);
+        $select = mysqli_query($conexion, "SELECT * FROM tb_usuarios WHERE usuario = '".$tusuario."'");
+        if(mysqli_num_rows($select)) {
+            echo "<script>alert('The user already exists!')</script>";
+        }
+        else{
+            $query=mysqli_query($conexion,'CALL sp_insertar_usuarios("'.$tnombre.'","'.$tusuario.'","'.$tpassword.'")');
+            if(!$query)
+            {
+                echo "<script>alert('Something went wrong!')</script>";
+            }
+            else
+            {
+                echo "<script>alert('The user has been registered successfully')</script>";
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +36,8 @@ if(!empty($_POST['tnombre']) && !empty($_POST['tusuario']) && !empty($_POST['tpa
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta name="description" content="Simple Web Application For Products Management." />
+        <meta name="author" content="472 UABC Group" />
         <title>Sign up</title>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -64,7 +50,9 @@ if(!empty($_POST['tnombre']) && !empty($_POST['tusuario']) && !empty($_POST['tpa
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header bg-white"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                                    <div class="card-header bg-white">
+                                        <h3 class="text-center font-weight-light my-4">Create Account</h3>
+                                    </div>
                                     <div class="card-body">
                                     <form action="register.php" method="POST">
                                             <div class="row mb-3">
@@ -91,7 +79,7 @@ if(!empty($_POST['tnombre']) && !empty($_POST['tusuario']) && !empty($_POST['tpa
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                      <div class="small"><a href="login.html">Already have an account? Sign in</a></div>
+                                      <div class="small"><a href="login.php">Already have an account? Sign in</a></div>
                                     </div>
                                 </div>
                             </div>

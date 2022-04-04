@@ -1,8 +1,6 @@
 <?php 
     function add_user($data, $BD){
-
         $name = $stock = $price = "";
-
         $errors = [];
 
         if(!empty($data["f_name"])){
@@ -51,5 +49,4 @@
         $data = mysqli_real_escape_string($BD,$data);
         return $data;
     }
-
 ?>
