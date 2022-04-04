@@ -7,5 +7,5 @@
         exit;
     }
 
-    //echo 'Te has conectado a la base de datos';
+    echo 'Te has conectado a la base de datos';
 ?>
