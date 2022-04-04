@@ -66,8 +66,6 @@ if(!empty($_POST['tnombre']) && !empty($_POST['tusuario']) && !empty($_POST['tpa
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header bg-white"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                                     <div class="card-body">
-                                       
-                                    <!--<form method="POST" action="register.php" >-->
                                     <form action="register.php" method="POST">
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
@@ -92,8 +90,8 @@ if(!empty($_POST['tnombre']) && !empty($_POST['tusuario']) && !empty($_POST['tpa
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="small"><a href="login.html">¿tienes cuenta?, inicia sesión</a></div>
                                     <div class="card-footer text-center py-3">
+                                      <div class="small"><a href="login.html">Already have an account? Sign in</a></div>
                                     </div>
                                 </div>
                             </div>

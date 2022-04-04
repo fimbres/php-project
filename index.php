@@ -36,7 +36,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 See all the products
                             </a>
-                            <a class="nav-link" href="Add.php">
+                            <a class="nav-link" href="add.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-add"></i></div>
                                 Add a product
                             </a>
@@ -84,7 +84,7 @@
                                         <?php
                                             require 'php/conexion.php';
 
-                                            $query = "SELECT nombre_producto,stock,precio FROM tb_productos";
+                                            $query = "SELECT * FROM tb_productos";
                                             $res = mysqli_query($conexion,$query);
                                      
                                             while($fila = mysqli_fetch_array($res))
@@ -94,10 +94,11 @@
                                                     <td><?php echo $fila['nombre_producto'];?></td>
                                                     <td><?php echo $fila['stock'];?></td>
                                                     <td><?php echo $fila['precio'];?></td>
+                                                    <?php $id = $fila['idp'];?>
                                                     <td>
                                                         <div class="d-flex justify-content-center">
-                                                            <button class="btn btn-warning w-40 m-1 ">Edit</button>
-                                                            <button class="btn btn-danger w-40 m-1 ">Delete</button>
+                                                          <a href="edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
+                                                          <a onclick="checkerDelete()" href="php/delete.php?idp=<?php echo $id;?>"><button class="btn btn-danger w-40 m-1 ">Delete</button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -128,5 +129,13 @@
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+	<script>
+		function checkerDelete(){
+			var result = confirm('Esta seguro que quiere borrar el registro?');
+			if (result == false){
+				event.preventDefault();
+			}
+		}
+	</script>
     </body>
 </html>
