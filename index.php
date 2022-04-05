@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    if(isset($_SESSION['user'])){
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,7 +24,7 @@
                     <li class="nav-item dropdown justify-content-end">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="php/logout.php">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -44,7 +48,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Welcome back!</div>
-                        *User name*
+                        <?php echo $_SESSION['user']; ?>
                     </div>
                 </nav>
             </div>
@@ -137,3 +141,9 @@
 	</script>
     </body>
 </html>
+<?php
+    }
+    else{
+        header('location: login.php');
+    }
+?>

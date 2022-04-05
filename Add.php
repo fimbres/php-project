@@ -1,20 +1,21 @@
 <?php
-    include("php/agregar.php");
-    
-    $alert = "";
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $alert = "error_b";
-        include("php/conexion.php");
-        $res = add_user($_POST,$conexion);
+    session_start();
+    if(isset($_SESSION['user'])){
+        include("php/agregar.php");
+        $alert = "";
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $alert = "error_b";
+            include("php/conexion.php");
+            $res = add_user($_POST,$conexion);
 
-        if($res[1]){
-            $alert ="success";
-        } else{
-            if(count($res[0]) == 0){
-                $alert = "error_a";
+            if($res[1]){
+                $alert ="success";
+            } else{
+                if(count($res[0]) == 0){
+                    $alert = "error_a";
+                }
             }
         }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +39,7 @@
                     <li class="nav-item dropdown justify-content-end">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                            <li><a class="dropdown-item" href="php/logout.php">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -62,7 +63,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Welcome back!</div>
-                        *User name*
+                            <?php echo $_SESSION['user']; ?>
                     </div>
                 </nav>
             </div>
@@ -151,3 +152,9 @@
         <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>
+<?php
+    }
+    else{
+        header('location: login.php');
+    }
+?>

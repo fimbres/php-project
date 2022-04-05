@@ -1,6 +1,7 @@
 <?php
     $usuario = $_POST['Username'];
     $contraseña = $_POST['Password'];
+    session_start();
 
     if(empty($usuario) || empty($contraseña))
     {
@@ -10,11 +11,9 @@
         require 'conexion.php';
         $query = "SELECT * FROM  tb_usuarios where usuario = '$usuario' and password = '$contraseña'";
         $res = mysqli_query($conexion,$query);
-        $rows = mysqli_num_rows($res);
 
-        if($rows){
-            session_start();
-            $_SESSION['user'] = $rows;
+        if($res){
+            $_SESSION['user'] = $usuario;
             header("location: ../index.php");
         }else{
             echo "<div class='alert alert-danger' role='alert'>Authentication error!</div>";
