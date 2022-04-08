@@ -14,6 +14,9 @@
     <body class="sb-nav-fixed">
         <?php 
             $idp = $_GET['producto'];
+            $name_p = $_GET['name_p'];
+            $stock_p = $_GET['stock_p'];
+            $price_p = $_GET['price_p'];
         ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between align-items-center">
             <a class="navbar-brand ps-3" href="index.html">PHP Admin</a>
@@ -66,27 +69,30 @@
                                 Product atributes
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form method="POST" action="php/editar.php">
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                                                <label for="inputFirstName">Name</label>
+                                                <input type="text" name="idp" value="<?php echo $idp;?>" style="display:none;">
+                                                <input class="form-control" id="inputFirstName" name ="nombre" type="text" placeholder="Enter your first name" value="<?php echo $name_p;?>" />
+                                                <label for="inputFirstName">nombre</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
+                                                <input class="form-control" id="inputLastName" name="stock" type="text" placeholder="Enter your last name" value="<?php echo $stock_p;?>"  />
                                                 <label for="inputLastName">Stock</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                                        <label for="inputPassword">Price</label>
+                                        <input class="form-control" type="text" name="precio" value="<?php echo $price_p;?>" />
+                                        <label for="inputFirstName">precio</label>
                                     </div>
                                     <div class="mt-4 mb-0">
-                                        <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Edit Product</a></div>
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-primary btn-block">Edit Product</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
