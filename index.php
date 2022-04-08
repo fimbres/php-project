@@ -40,7 +40,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 See all the products
                             </a>
-                            <a class="nav-link" href="add.php">
+                            <a class="nav-link" href="Add.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-add"></i></div>
                                 Add a product
                             </a>
@@ -96,10 +96,15 @@
                                                 <td><?php echo $fila['nombre_producto'];?></td>
                                                 <td><?php echo $fila['stock'];?></td>
                                                 <td><?php echo $fila['precio'];?></td>
-                                                <?php $id = $fila['idp'];?>
+                                                <?php 
+                                                    $id = $fila['idp'];
+                                                    $name_p = $fila['nombre_producto'];
+                                                    $stock_p = $fila['stock'];
+                                                    $price_p = $fila['precio'];
+                                                ?>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href="edit.php?producto=<?php echo $id;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
+                                                        <a href="Edit.php?producto=<?php echo $id;?>&name_p=<?php echo $name_p;?>&stock_p=<?php echo $stock_p;?>&price_p=<?php echo $price_p;?>"><button class="btn btn-warning w-40 m-1">Edit</button></a>
                                                         <a onclick="confirmDelete()" href="php/delete.php?idp=<?php echo $id;?>"><button class="btn btn-danger w-40 m-1 ">Delete</button>
                                                     </div>
                                                 </td>

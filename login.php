@@ -39,7 +39,7 @@
                                                     <label for="Password">Password</label>
                                                 </div>
                                                 <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                    <input class="btn btn-primary w-100" type="submit" value = "ingresar">    
+                                                    <input class="btn btn-primary w-100" type="submit" value="Log In">    
                                                 </div>
                                         </form>
                                     </div>
