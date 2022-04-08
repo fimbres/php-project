@@ -16,7 +16,7 @@
 - Sign out
 - Create Users
 
-**Instructions**
+**Prerequisites**
 
 - Be sure that you have already installed a PHP environment as XAMPP.
 
